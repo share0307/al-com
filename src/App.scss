@@ -1,0 +1,58 @@
+.slide-right-enter-active {
+    animation-name: slide-right-in;
+    animation-duration: $app-router-transition-time;
+  }
+  
+  .slide-right-leave-active {
+    animation-name: slide-right-out;
+    animation-duration: $app-router-transition-time;
+  }
+  
+  @keyframes slide-right-in {
+    0% {
+      transform: translate3d(100%, 0, 0);
+    }
+    100% {
+      transform: translate3d(0, 0, 0);
+    }
+  }
+  
+  @keyframes slide-right-out {
+    0% {
+      transform: translate3d(0, 0, 0);
+    }
+    100% {
+      transform: translate3d(-100%, 0, 0);
+    }
+  }
+
+
+
+
+  .slide-left-enter-active {
+    animation-name: slide-left-in;
+    animation-duration: $app-router-transition-time;
+  }
+  
+  .slide-left-leave-active {
+    animation-name: slide-left-out;
+    animation-duration: $app-router-transition-time;
+  }
+  
+  @keyframes slide-left-in {
+    0% {
+      transform: translate3d(-100%, 0, 0);
+    }
+    100% {
+      transform: translate3d(0, 0, 0);
+    }
+  }
+  
+  @keyframes slide-left-out {
+    0% {
+      transform: translate3d(0, 0, 0);
+    }
+    100% {
+      transform: translate3d(100%, 0, 0);
+    }
+  }

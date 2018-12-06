@@ -1,29 +1,41 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+    <transition :name="transitionName">
+      <navigation>
+        <router-view class="child-view"></router-view>
+      </navigation>
+    </transition>
   </div>
 </template>
 
 <style lang="scss">
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-#nav {
-  padding: 30px;
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-    &.router-link-exact-active {
-      color: #42b983;
+@import './App';
+</style>
+<script>
+import md5 from 'js-md5'
+export default {
+  name: 'login',
+  data () {
+    return {
+      transitionName: 'transitionName',
     }
+  },
+  methods: {
+  },
+  computed: {
+  },
+  mounted () {
+    this.$navigation.on('forward', (to, from) => {
+      console.log('%c forward','color:green;',to)
+      console.log('%c forward','color:green;',from)
+      window.globalConfig.animation && (this.transitionName = 'slide-right')
+    })
+    this.$navigation.on('back', (to, from) => {
+      console.log('%c back','color:green;',to)
+      console.log('%c back','color:green;',from)
+      window.globalConfig.animation && (this.transitionName = 'slide-left')
+    })
+    console.log('%c appvue','color:green;','appvue');
   }
 }
-</style>
+</script>
