@@ -48,7 +48,7 @@ npm install vant -S
 npm install mand-mobile -S
 npm install vue-navigation -S
 npm install less less-loader --save-dev
-npm install scss scss-loader --save-deva
+npm install scss scss-loader --save-dev
 cnpm install node-sass --save-dev 
 cnpm install sass-loader --save-dev
 npm install stylus stylus-loader --save-dev
