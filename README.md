@@ -48,6 +48,9 @@ npm install vant -S
 npm install mand-mobile -S
 npm install vue-navigation -S
 npm install less less-loader --save-dev
+npm install scss scss-loader --save-deva
+cnpm install node-sass --save-dev 
+cnpm install sass-loader --save-dev
 npm install stylus stylus-loader --save-dev
 babel-plugin-import 是一款 babel 插件，它会在编译过程中将 import 的写法自动转换为按需引入的方式(配置写在babel.config.js里面)
 # 安装 babel-plugin-import 插件
