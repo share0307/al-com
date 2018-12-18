@@ -1,5 +1,17 @@
 <template>
     <div>
+      <!-- 头部 -->
+      <al-home-head v-if="!showAbs" :opacityStyle='opacityStyle' signin-up='msite'>
+        <router-link :to="'/search/geohash'" class="link_search" slot="search">
+          <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" version="1.1">
+            <circle cx="8" cy="8" r="7" stroke="rgb(255,255,255)" stroke-width="1" fill="none"/>
+            <line x1="14" y1="14" x2="20" y2="20" style="stroke:rgb(255,255,255);stroke-width:2"/>
+          </svg>
+        </router-link>
+        <router-link to="/home" slot="msite-title" class="msite_title">
+          <span class="title_text ellipsis">{{msiteTitle}}</span>
+        </router-link>
+      </al-home-head>
       <van-pull-refresh 
         :head-height="vanPullRefresh.headHeight"
         v-model="showLoading"
@@ -18,18 +30,6 @@
             <div style="height:100px;"><pull-loading></pull-loading></div>
         </div>
         <div style="background-color:white;">
-          <!-- 头部 -->
-          <al-home-head :opacityStyle='opacityStyle' signin-up='msite'>
-            <router-link :to="'/search/geohash'" class="link_search" slot="search">
-              <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" version="1.1">
-                <circle cx="8" cy="8" r="7" stroke="rgb(255,255,255)" stroke-width="1" fill="none"/>
-                <line x1="14" y1="14" x2="20" y2="20" style="stroke:rgb(255,255,255);stroke-width:2"/>
-              </svg>
-            </router-link>
-            <router-link to="/home" slot="msite-title" class="msite_title">
-              <span class="title_text ellipsis">{{msiteTitle}}</span>
-            </router-link>
-          </al-home-head>
           <van-swipe :autoplay="3000">
             <van-swipe-item v-for="(image, index) in images" :key="index">
               <div :style="{ 'background-color': image.color, height: '200px' }">xxxxx</div>
@@ -168,6 +168,10 @@ export default {
   mounted() {
     this.init()
   },
+  deactivated() {
+    console.log('%c 啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊','color:red;','销毁');
+    window.removeEventListener('scroll', this.handleScroll);
+  },
   computed: {},
   activated(){
     window.addEventListener('scroll', this.handleScroll)
@@ -175,7 +179,7 @@ export default {
   methods: {
     ...mapMutations(["RECORD_ADDRESS", "SAVE_GEOHASH"]),
     handleScroll(){
-      const top = document.documentElement.scrollTop;
+      const top = document.documentElement.scrollTop || document.body.scrollTop || window.pageYOffset
       if (top > 60) {
         let opacity = top / 140;
         opacity = opacity > 1 ? 1 :opacity;
@@ -227,7 +231,14 @@ export default {
       }
     }
   },
-  watch: {}
+  watch: {
+    // '$route'(val){
+    //   if(val.name!="homefish"){
+    //     console.log('%c 路由销毁xxxx','color:green;',val.name);
+    //     window.removeEventListener('scroll', this.handleScroll,true);
+    //   }
+    // },
+  }
 };
 </script>
 

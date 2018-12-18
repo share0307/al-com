@@ -72,16 +72,28 @@ Vue.use(Lazyload, {
   attempt: 3
 })
 
+//骨架屏svg--star少暂时不用自行处理svg
+// import VueContentPlaceholders from 'vue-content-placeholders'
+// Vue.use(VueContentPlaceholders)
+
+//bar的标题显示内容处理
+Vue.use(require('vue-wechat-title'))
+
+//vsconsole
+// import VConsole from 'vconsole';
+// let option = {};
+// var vConsole = new VConsole();
+
 //配置使用全局jquery
 window.jQuery = $;
 window.$ = $;
 
 //300ms延迟去除
-FastClick.attach(document.body)
+// FastClick.attach(document.body)
 
 Vue.config.productionTip = false
 
-//国际化
+//国际化AL_MOBILE_PALETTE-en,zh
 Vue.use(VueI18n)
 const i18n = new VueI18n({
   locale: utils.cache.get('AL_MOBILE_PALETTE') || 'zh',

@@ -2,7 +2,7 @@
   <div id="app">
     <transition :name="transitionName">
       <navigation>
-        <router-view class="child-view"></router-view>
+        <router-view v-wechat-title='$route.meta.title' v-if="isRouterAlive" class="router-view"></router-view>
       </navigation>
     </transition>
   </div>
@@ -14,13 +14,26 @@
 <script>
 import md5 from 'js-md5'
 export default {
-  name: 'login',
+  name: 'App',
+  provide(){
+    return {
+      reload: this.reload
+    }
+  },
   data () {
     return {
-      transitionName: 'transitionName',
+      transitionName: '',
+      isRouterAlive: true,
     }
   },
   methods: {
+    //页面重载--用于页面不做跳转但是需要重渲染页面的情况（实现原理：利用v-if重新渲染）
+    reload(){
+      this.isRouterAlive = false
+      this.$nextTick(function() {
+        this.isRouterAlive = true
+      })
+    }
   },
   computed: {
   },
@@ -28,12 +41,12 @@ export default {
     this.$navigation.on('forward', (to, from) => {
       console.log('%c forward','color:green;',to)
       console.log('%c forward','color:green;',from)
-      window.globalConfig.animation && (this.transitionName = 'slide-right')
+      this.transitionName = (window.globalConfig.animation && (to.route.meta.transition || from.route.meta.transition)?('slide-in'):'')
     })
     this.$navigation.on('back', (to, from) => {
       console.log('%c back','color:green;',to)
       console.log('%c back','color:green;',from)
-      window.globalConfig.animation && (this.transitionName = 'slide-left')
+      this.transitionName = (window.globalConfig.animation && (to.route.meta.transition || from.route.meta.transition)?('slide-out'):'')
     })
     console.log('%c appvue','color:green;','appvue');
   }

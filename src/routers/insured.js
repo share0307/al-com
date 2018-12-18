@@ -15,6 +15,7 @@ export default [{
   meta: {
     title: '投保',
     login: false,
+    transition: true,
     footer: false
   }
 },{
@@ -24,6 +25,7 @@ export default [{
   meta: {
     title: '投保',
     login: false,
+    transition: true,
     footer: false
   }
 },

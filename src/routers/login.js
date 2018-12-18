@@ -18,6 +18,7 @@ export default [{
   meta: {
     title: '登陆',
     login: false,
+    transition: false,
     footer: false
   }
 },

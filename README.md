@@ -121,7 +121,15 @@ Vant 中默认包含了一些常用样式，可以直接通过 className 的方�
 
 
 
-参考组件
-骨架屏svg  https://github.com/michalsnik/vue-content-placeholders
+### 参考组件
+#### 骨架屏svg  https://github.com/michalsnik/vue-content-placeholders(使用第二个npm)
+###### npm install vue-content-placeholders --save
+###### npm install --save-dev page-skeleton-webpack-plugin
+       npm install --save-dev html-webpack-plugin
 表单验证   https://github.com/baianat/vee-validate
 专场特效参考不使用https://github.com/jaweii/vueg.git
+
+
+
+### tencent调试工具
+npm install vconsole

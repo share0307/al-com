@@ -14,6 +14,7 @@ export default [{
   meta: {
     title: '个人中心',
     login: false,
+    transition: false,
     footer: false
   }
 },

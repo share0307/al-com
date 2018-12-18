@@ -1,0 +1,66 @@
+/*
+ * @Author: aliang 
+ * @Date: 2018-11-21 18:13:32 
+ * @Last Modified by: 
+ * @Last Modified time: 2018-12-05 18:10:45
+ * @description：部分样式主题对象
+ */
+
+$theme-color: #E7A128;//主题颜色（此处为主要的全局的顶部导航/部分主要按钮的颜色）
+
+
+$app-router-transition-time: 0.3s;//路由切换时间总
+
+
+/*↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓header↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓*/
+$headIndex:1000;
+$headTop:46px;//统一head头部高度
+$headBottomTop:46px;//统一第二head头部高度（类似于一些下拉菜单等等）
+
+/*↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑header↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑*/
+
+$bgcolor: #ECECEC; //背景颜色
+$normal-color:#394043; //正常字体颜色
+$primary-button-color-start: #D43D20;
+$primary-button-color-end:#D43D20;
+//基础变量 --字体
+$font-hhg:2rem;
+$font-hg:1.8rem;
+$font-lg:1.6rem;
+$font-md:1.4rem;
+$font-sm:1.2rem;
+$font-tn:1rem;
+// margin的距离
+$mg-hg:2rem;
+$mg-lg:1.6rem;
+$mg-md:1.0rem;
+$mg-sm:.6rem;
+$mg-tn:.2rem;
+// padding的距离
+$pd-hg:2rem;
+$pd-lg:1.6rem;
+$pd-md:1rem;
+$pd-sm:.6rem;
+$pd-tn:.2rem;
+//设计规范颜色
+$primary-color:#D43D20; //大面积使用，用于特别需要强调Icon、文字超链
+$emphasize-color:#7a7e83; //小面积使用，用于特别需要强调和突出的文字
+$warning-color:#F86365; //小面积使用，用于警示性突出的文字
+$title-color: #303030; //用于重要级文字信息，标题文字
+$description-color:#999999; //用于辅助、次要的文字信息
+$description-color-light:#CCCCCC; //用于弱文字信息的辅助文字信息
+$divider-color:#E5E5E5; //用于分割线
+$bg-color: #F0EFF5; //用于底色
+$white-color: #FFFFFF; //白色
+$price-color:#D43D20; //价格字体颜色
+
+$bg-gray: #ECECEC; //
+
+
+$blue: #3190e8;  
+$bc: #e4e4e4;
+$fc:#fff;
+// color variables
+$black: #000;
+$white: #fff;
+$active-color: #e8e8e8;

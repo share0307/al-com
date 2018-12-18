@@ -46,9 +46,23 @@
 			</router-link>
 		</ul>
 		<ul v-else class="animation_opactiy">
-			<li class="list_back_li" v-for="item in 10" :key="item">
+			<li class="list_back_li" v-for="item in 10" :key="item.id">
 				<img src="../../assets/images/shopback.svg" class="list_back_svg">
 			</li>
+			<van-card
+				num="2"
+				tag="标签"
+				price="2.00"
+				desc="描述信息"  
+				title="商品标题"
+				:thumb="imageURL"
+				origin-price="10.00"
+				>
+				<div slot="footer">
+					<van-button size="mini">按钮</van-button>
+					<van-button size="mini">按钮</van-button>
+				</div>
+			</van-card>
 		</ul>
 		<p v-if="touchend" class="empty_data">没有更多了</p>
 		<aside class="return_top" @click="backTop" v-if="showBackStatus">
@@ -72,6 +86,7 @@ import {showBack, animate} from '@/config/mUtils'
 import {loadMore, getImgPath} from './mixin'
 import loading from './loading'
 import ratingStar from './ratingStar'
+import { Card,Button } from 'vant';
 
 export default {
 	data(){
@@ -83,6 +98,7 @@ export default {
 			showLoading: true, //显示加载动画
 			touchend: false, //没有更多数据
 			imgBaseUrl,
+			imageURL:require('@/assets/images/common/voucher.png'),
 		}
 	},
 	mounted(){
@@ -91,6 +107,8 @@ export default {
 	components: {
 		loading,
 		ratingStar,
+		[Card.name]: Card,
+		[Button.name]: Button,
 	},
 	props: ['restaurantCategoryId', 'restaurantCategoryIds', 'sortByType', 'deliveryMode', 'supportIds', 'confirmSelect', 'geohash'],
 	mixins: [loadMore, getImgPath],
@@ -199,6 +217,100 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.al_cp {
+	padding: 5px 15px 5px 15px;
+}
+.al-card {
+  color: #323233;
+  height: 100px;
+  font-size: 12px;
+  position: relative;
+  box-sizing: border-box;
+  padding: 5px 15px 5px 115px;
+  background-color: #fafafa;
+}
+  .al-card:not(:first-child) {
+    margin-top: 10px;
+  }
+
+  .al-card--center,
+  .al-card__thumb {
+    align-items: center;
+    justify-content: center;
+  }
+
+  .al-card__thumb {
+    top: 5px;
+    left: 15px;
+    width: 90px;
+    height: 90px;
+    position: absolute;
+  }
+
+ .al-card__thumb img {
+	border: none;
+	max-width: 100%;
+	max-height: 100%;
+}
+  .al-card,
+  .al-card__thumb,
+  .al-card__content {
+    display: flex;
+  }
+
+  .al-card__content {
+    width: 100%;
+  }
+
+  .al-card__title,
+  .al-card__desc {
+    line-height: 20px;
+    word-break: break-all;
+  }
+
+  .al-card__title {
+    max-height: 40px;
+
+    
+  }
+.al-card__title  multi-ellipsis(2)
+  .al-card__desc {
+    color: #7d7e80;
+    max-height: 20px;
+  }
+
+  .al-card__left {
+    flex: 1;
+    min-width: 0; /* hack for flex box ellipsis */
+  }
+
+  .al-card__right {
+    flex-shrink: 0;
+    line-height: 20px;
+    padding-left: 10px;
+    text-align: right;
+  }
+
+  .al-card__origin-price {
+    color: #7d7e80;
+    text-decoration: line-through;
+  }
+
+  .al-card__num {
+    color: #7d7e80;
+  }
+
+  .al-card__tag {
+    position: absolute;
+    top: 2px;
+    left: 0;
+  }
+
+  .al-card__footer {
+    right: 15px;
+    bottom: 8px;
+    position: absolute;
+  }
 	.shoplist_container{
 		background-color: #fff;
 		margin-bottom: 2rem;

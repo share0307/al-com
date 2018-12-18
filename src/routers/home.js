@@ -11,21 +11,23 @@ const homefish = r => require.ensure([], () => r(require('@/views/home/HomeFish.
 export default [{
     name: 'home',
     path: '/home',
-    // component: home,
-    component: () => import('@/views/home/Home.vue'),
+    component: home,
+    // component: () => import('@/views/home/Home.vue'),
     meta: {
-        title: 'home',
+        title: '首页',
         login: false,
+        transition: false,
         footer: false
     }
 },{
     name: 'homefish',
     path: '/homefish',
-    // component: homefish,
-    component: () => import('@/views/home/HomeFish.vue'),
+    component: homefish,
+    // component: () => import('@/views/home/HomeFish.vue'),
     meta: {
-        title: 'homefish',
+        title: '首页',
         login: false,
+        transition: false,
         footer: false
     }
 },
