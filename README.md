@@ -164,15 +164,17 @@ Vant 中默认包含了一些常用样式，可以直接通过 className 的方�
 
 
 # 项目结构
-## .vscode--有关ide的配置（此处为vscode）
-## public--本地项目的主入口（后期静态资源static最好放在此处）
-## src
-### assets--本地项目级别的静态资源
-### components--本地项目级别的组件库（注意新建的组件要注入到index.js中--目前本地组件库为全局引入，因此注意开发的组件要尽量全局使用的封装）
-### config--本地项目系统级配置
-#### axiosHttp--请求总入口
-### data--预制话的静态数据
-#### translation.js--国际化的字段值（ 页面直接使用如下 )
++ .vscode--有关ide的配置（此处为vscode）
++ public--本地项目的主入口（后期静态资源static最好放在此处）
++ src
+   
+- assets--本地项目级别的静态资源
+- components--本地项目级别的组件库（注意新建的组件要注入到index.js中--目前本地组件库为全局引入，因此注意开发的组件要尽量全局使用的封装）
+- config--本地项目系统级配置
+   
+* axiosHttp--请求总入口
+- data--预制话的静态数据
+- translation.js--国际化的字段值（ 页面直接使用如下 )
 ```
 {{ $t('edit.backBtn') }}
 ```
