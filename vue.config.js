@@ -21,17 +21,17 @@ module.exports = {
     //     }
     // },
     //----骨架屏插件
-    // configureWebpack: {
-    //     plugins: [
-    //     // vue-cli3自带html-webpack-plugin，所以我这边没有引入
-    //     // 骨架屏插件
-    //     new SkeletonPlugin({
-    //         pathname: path.resolve(__dirname, './shell'),
-    //         staticDir: path.resolve(__dirname, './dist'),
-    //         routes: ['/'],
-    //     })
-    //     ]
-    // },
+    configureWebpack: {
+        plugins: [
+        // vue-cli3自带html-webpack-plugin，所以我这边没有引入
+        // 骨架屏插件
+            new SkeletonPlugin({
+                pathname: path.resolve(__dirname, './shell'),
+                staticDir: path.resolve(__dirname, './al'),
+                routes: ['/'],
+            })
+        ]
+    },
     //----MPA多页应用
     // pages: {
     //     console: {
@@ -70,6 +70,7 @@ module.exports = {
         }
     },
     css: {
+        //定制化的主题样式
         loaderOptions: {
             sass: {
                 data: `

@@ -1,4 +1,4 @@
-var httpEnvironment = 'uat';// local、int、uat
+var httpEnvironment = process.env.NODE_ENV;// local、int、uat
 window.globalConfig = {
   rootUrl: 'http://tjiyibaouat.jxlife.com.cn/com.ifp.ipartner/', // 客户UAT服务器地址
   wechatUrl: 'http://tjiyibao.jxlife.com.cn', // 微信安全域名
@@ -21,7 +21,7 @@ window.globalConfig = {
   downloadApp_iOS: 'https://www.pgyer.com/jx_iOS_INT'
 }
 switch (httpEnvironment) {
-  case 'local':
+  case 'development':
     window.globalConfig.isDebug = true;
     break
   case 'int':
@@ -45,7 +45,6 @@ switch (httpEnvironment) {
 import Vue from 'vue'
 import $ from 'jquery'
 import Navigation from 'vue-navigation'
-import FastClick from 'fastclick'
 import VueI18n from 'vue-i18n'
 import App from './App.vue'
 import router from './routers'
@@ -53,6 +52,9 @@ import store from './vuex'
 import utils from './utils'
 import './registerServiceWorker'
 import messages from './data/translation'
+
+//项目
+import '../static/lib/md5-min.js'
 
 //定制化样式
 // import './assets/css/mixin.scss'
@@ -89,9 +91,11 @@ window.jQuery = $;
 window.$ = $;
 
 //300ms延迟去除
+// import FastClick from 'fastclick'
 // FastClick.attach(document.body)
 
 Vue.config.productionTip = false
+
 
 //国际化AL_MOBILE_PALETTE-en,zh
 Vue.use(VueI18n)
@@ -128,6 +132,17 @@ Vue.mixin({
       console.log('点击返回=', urlName)
       // 如果url存在 则跳转到对应的位置
       if (typeof urlName === 'string' && urlName) {
+        let routerList = this.$navigation.getRoutes().reverse()
+        console.log('routerList=', routerList)
+        for (let i = 0; i < routerList.length; i++) {
+          if (routerList[i].indexOf(urlName) >= 0) {
+            this.$router.go(-i)
+            console.log('进入for')
+            // 找出最近的位置
+            return false
+          }
+        }
+        console.log('进入push')
         // 如果不存在则 跳转到对应的路由
         this.$router.push({name: urlName})
       } else {

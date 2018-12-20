@@ -2,7 +2,7 @@
  * @Author: aliang 
  * @Date: 2018-11-19 17:21:00 
  * @Last Modified by: 
- * @Last Modified time: 2018-12-04 10:55:36
+ * @Last Modified time: 2018-12-19 14:17:58
  */
 
 import Vue from 'vue'
@@ -10,7 +10,7 @@ import Router from 'vue-router'
 import store from '../vuex'
 
 // 引入模块
-// import demo from './demo'
+import demo from './demo'
 // 登陆模块
 import login from './login'
 // 个人中心
@@ -20,10 +20,54 @@ import insured from './insured'
 // 首页
 import home from './home'
 
+
+// scrollBehavior:
+// - only available in html5 history mode
+// - defaults to no scroll behavior
+// - return false to prevent scroll
+const scrollBehavior = (to, from, savedPosition) => {
+  console.log('%c savedPosition','color:green;',savedPosition);
+  if (savedPosition) {
+    let position = {}
+    // savedPosition is only available for popstate navigations.
+    if (to.matched.some(m => m.meta.scrollToTop)) {
+      position.x = 0
+      position.y = 0
+    }else{
+      position = savedPosition
+    }
+    // if(position&&position.x&&position.x==0){
+    //   document.getElementById('app').scrollIntoView()
+    // }
+    return position
+  } else {
+    const position = {}
+    // new navigation.
+    // scroll to anchor by returning the selector
+    if (to.hash) {
+      position.selector = to.hash
+    }
+    // check if any matched route config has meta that requires scrolling to top
+    // if (to.matched.some(m => m.meta.scrollToTop)) {
+      // cords will be used if no selector is provided,
+      // or if the selector didn't match any element.
+      position.x = 0
+      position.y = 0
+    // }
+    // if the returned position is falsy or an empty object,
+    // will retain current scroll position.
+    // if(position&&position.x&&position.x==0){
+    //   document.getElementById('app').scrollIntoView()
+    // }
+    return position
+  }
+}
+
 Vue.use(Router)
 const router = new Router({
   // mode: 'history',
   base: process.env.BASE_URL,
+  scrollBehavior,
   routes: [
     {
       path: '/',
@@ -43,7 +87,7 @@ const router = new Router({
         tabIndex: '1'
       }
     },
-    // ...demo,
+    ...demo,//build包的时候注释掉
     ...login,
     ...home,
     ...center,
@@ -87,6 +131,12 @@ router.beforeEach((to, from, next) => {
   } else {
     next()
   }
+})
+
+router.afterEach((to, from) => {
+  // if(to.meta.scrollToTop){
+  //   document.getElementById('app').scrollIntoView()
+  // }
 })
 
 export default router

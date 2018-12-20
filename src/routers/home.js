@@ -2,7 +2,7 @@
  * @Author: aliang 
  * @Date: 2018-11-19 17:21:42 
  * @Last Modified by: 
- * @Last Modified time: 2018-12-05 14:02:18
+ * @Last Modified time: 2018-12-19 11:57:02
  */
 
 const home = r => require.ensure([], () => r(require('@/views/home/Home.vue')), undefined, 'home')
@@ -28,7 +28,8 @@ export default [{
         title: '首页',
         login: false,
         transition: false,
-        footer: false
+        footer: false,
+        scrollToTop: true
     }
 },
 ]

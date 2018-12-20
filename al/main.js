@@ -1,6 +1,6 @@
-importScripts("/precache-manifest.6cf0c861e2363d49db389906fe1a5248.js", "https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
+importScripts("/precache-manifest.9bb6b79772263ba68e4559bb5e3885e0.js", "https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
-var httpEnvironment = 'uat';// local、int、uat
+var httpEnvironment = process.env.NODE_ENV;// local、int、uat
 window.globalConfig = {
   rootUrl: 'http://tjiyibaouat.jxlife.com.cn/com.ifp.ipartner/', // 客户UAT服务器地址
   wechatUrl: 'http://tjiyibao.jxlife.com.cn', // 微信安全域名
@@ -23,7 +23,7 @@ window.globalConfig = {
   downloadApp_iOS: 'https://www.pgyer.com/jx_iOS_INT'
 }
 switch (httpEnvironment) {
-  case 'local':
+  case 'development':
     window.globalConfig.isDebug = true;
     break
   case 'int':
@@ -47,7 +47,6 @@ switch (httpEnvironment) {
 import Vue from 'vue'
 import $ from 'jquery'
 import Navigation from 'vue-navigation'
-import FastClick from 'fastclick'
 import VueI18n from 'vue-i18n'
 import App from './App.vue'
 import router from './routers'
@@ -55,6 +54,9 @@ import store from './vuex'
 import utils from './utils'
 import './registerServiceWorker'
 import messages from './data/translation'
+
+//项目
+import '../static/lib/md5-min.js'
 
 //定制化样式
 // import './assets/css/mixin.scss'
@@ -74,16 +76,30 @@ Vue.use(Lazyload, {
   attempt: 3
 })
 
+//骨架屏svg--star少暂时不用自行处理svg
+// import VueContentPlaceholders from 'vue-content-placeholders'
+// Vue.use(VueContentPlaceholders)
+
+//bar的标题显示内容处理
+Vue.use(require('vue-wechat-title'))
+
+//vsconsole
+// import VConsole from 'vconsole';
+// let option = {};
+// var vConsole = new VConsole();
+
 //配置使用全局jquery
 window.jQuery = $;
 window.$ = $;
 
 //300ms延迟去除
-FastClick.attach(document.body)
+// import FastClick from 'fastclick'
+// FastClick.attach(document.body)
 
 Vue.config.productionTip = false
 
-//国际化
+
+//国际化AL_MOBILE_PALETTE-en,zh
 Vue.use(VueI18n)
 const i18n = new VueI18n({
   locale: utils.cache.get('AL_MOBILE_PALETTE') || 'zh',

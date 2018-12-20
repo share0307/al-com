@@ -129,4 +129,4 @@ export const homeMenu = geohash => axiosHttp.get('/v2/index_entry', {
 	geohash,
 	group_type: '1',
 	'flags[]': 'F'
-});
+},true);
